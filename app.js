@@ -1,31 +1,51 @@
-
-
 function getComputerChoice() {
     choices = ["rock", "paper", "scissors"];
     return choices[Math.floor(Math.random() * choices.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
-    const returnMessage = [`You Lose! ${computerSelection} beats ${playerSelection}`, `You Win! ${playerSelection} beats ${computerSelection}`];
+    const returnMessage = [`You Lose! ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)} beats ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)}`, `You Win! ${playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1)} beats ${computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1)}`];
 
     if (playerSelection === "rock" && computerSelection === "paper") {
-        return returnMessage[0];
+        console.log(returnMessage[0]);
+        return false;
     } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return returnMessage[1];
+        console.log(returnMessage[1]);
+        return true;
     } else if (playerSelection === "paper" && computerSelection === "scissors") {
-        return returnMessage[0];
+        console.log(returnMessage[0]);
+        return false;
     } else if (playerSelection === "paper" && computerSelection === "rock") {
-        return returnMessage[1];
+        console.log(returnMessage[1]);
+        return true;
     } else if (playerSelection === "scissors" && computerSelection === "rock") {
-        return returnMessage[0];
+        console.log(returnMessage[0]);
+        return false;
     } else if (playerSelection === "scissors" && computerSelection === "paper") {
-        return returnMessage[1];
+        console.log(returnMessage[1]);
+        return true;
     } else {
-        return "It's a Tie!";
+        console.log("It's a Tie!");
+        return null;
     }
 }
 
-const playerSelection = "ROck";
-const computerSelection = getComputerChoice();
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
 
-console.log(playRound(playerSelection.toLowerCase(), computerSelection));
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
+        const computerSelection = getComputerChoice();
+        round = playRound(playerSelection, computerSelection);
+
+        if (round === true) {
+            playerScore++;
+        } else if (round === false) {
+            computerScore++;
+        }
+    }
+    console.log(`Your Score: ${playerScore}\nComputer's Score: ${computerScore}`);
+}
+
+game();
